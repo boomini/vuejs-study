@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item exact router :to="{name: 'home'}">
+        <v-list-item exact router :to="{ name: 'home' }">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -10,7 +10,7 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="isLogin===false" router :to="{name: 'login'}">
+        <v-list-item v-if="isLogin === false" router :to="{ name: 'login' }">
           <v-list-item-action>
             <v-icon>mdi-login</v-icon>
           </v-list-item-action>
@@ -18,7 +18,7 @@
             <v-list-item-title>로그인</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-else router :to="{name: 'mypage'}">
+        <v-list-item v-else router :to="{ name: 'mypage' }">
           <v-list-item-action>
             <v-icon>mdi-format-list-bulleted-square</v-icon>
           </v-list-item-action>
@@ -40,7 +40,7 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-item router :to="{name: 'mypage'}">
+          <v-list-item router :to="{ name: 'mypage' }">
             <v-list-item-title>마이페이지</v-list-item-title>
           </v-list-item>
           <v-list-item @click="$store.dispatch('logout')">
@@ -48,7 +48,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn v-else router :to="{name: 'login'}" color="primary">Log In</v-btn>
+      <v-btn v-else router :to="{ name: 'login' }" color="primary">Log In</v-btn>
     </v-app-bar>
 
     <v-main>

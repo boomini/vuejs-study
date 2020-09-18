@@ -33,11 +33,22 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="isLogin" @click="logout" :to="{name: 'home'}" color="primary">로그아웃</v-btn>
+      <v-menu offset-y v-if="isLogin">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn flat dark icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item router :to="{name: 'mypage'}">
+            <v-list-item-title>마이페이지</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="$store.dispatch('logout')">
+            <v-list-item-title>로그아웃</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-btn v-else router :to="{name: 'login'}" color="primary">Log In</v-btn>
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -50,7 +61,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   props: {
     source: String
@@ -59,7 +70,7 @@ export default {
     drawer: null
   }),
   methods: {
-    ...mapMutations(["logout"])
+    ...mapActions(["logout"])
   },
   computed: {
     ...mapState(["isLogin"])

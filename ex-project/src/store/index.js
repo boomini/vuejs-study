@@ -28,6 +28,7 @@ export default new Vuex.Store({
         },
         logout(state) {
             state.isLogin = false
+            state.isLoginError = false
             state.userInfo = null
         }
     },
@@ -46,6 +47,12 @@ export default new Vuex.Store({
                 router.push({ name: "mypage" })
 
             }
+        },
+
+        //로그아웃시
+        logout({ commit }) {
+            commit("logout")
+            router.push({ name: "home" })
         }
     },
     modules: {},
